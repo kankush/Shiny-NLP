@@ -70,7 +70,7 @@ shinyServer(function(input, output) {
   output$coplot = renderPlot({
     if(is.null(input$new)){return(NULL)}
     else{
-      occ <- cooccurrence(x = subset(annotate(), upos %in% input$check),
+      occ <- cooccurrence(x = subset(annotate(), upos %in% input$upos),
         term = "lemma",
         group = c("doc_id", "paragraph_id", "sentence_id"))
       
