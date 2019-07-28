@@ -1,11 +1,15 @@
-setwd('C:/Users/kavya/Documents/newdir')
+#Kavya Ankush-11915080
+#Madhuri Chinta - 11915055
+#Siddartha Tallapragada- 11915026
+
+
 Ui<-shinyUI( 
   fluidPage(
     titlePanel("NLP"),
     sidebarLayout(
       sidebarPanel(
         fileInput("new", "text file here"),
-        checkboxGroupInput("upos", label = h3("Upos selection"), choices = list("Adjective" = "ADJ", "Noun" = "NOUN" , "Proper Noun" = "PROPN", "Adverb" = "ADV", "Verb" = "VERB"), selected = c('ADJ', 'NOUN', 'PROPN'))),
+        checkboxGroupInput("check", label = h3("Upos selection"), choices = list("Adjective" = "ADJ", "Noun" = "NOUN" , "Proper Noun" = "PROPN", "Adverb" = "ADV", "Verb" = "VERB"), selected = c('ADJ', 'NOUN', 'PROPN'))),
 
       mainPanel(tabsetPanel(type = "tabs",
                 tabPanel("Description", br(), 

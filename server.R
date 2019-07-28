@@ -1,18 +1,22 @@
+
+#Kavya Ankush-11915080
+#Madhuri Chinta - 11915055
+#Siddartha Tallapragada- 11915026
+
+
+
 shinyServer(function(input, output) {
 #Reading The input file
   D1 <- reactive({
     if (is.null(input$new)) {return(NULL) } 
     else{
       Data <- readLines(input$new$datapath)
-    #  Data  =  str_replace_all(Data, "<.*?>", "")
-     # Data = Data[Data!= ""]
-      #str(Data)
       return(Data)
     }
   })
 #Loading Model file
   model = reactive({
-    model = udpipe_load_model("english-ewt-ud-2.3-181115.udpipe")  # file_model only needed
+    model = udpipe_load_model("english-ewt-ud-2.3-181115.udpipe")
     return(model)
   })
 #  
@@ -66,7 +70,7 @@ shinyServer(function(input, output) {
   output$coplot = renderPlot({
     if(is.null(input$new)){return(NULL)}
     else{
-      occ <- cooccurrence(x = subset(annotate(), upos %in% input$upos),
+      occ <- cooccurrence(x = subset(annotate(), upos %in% input$check),
         term = "lemma",
         group = c("doc_id", "paragraph_id", "sentence_id"))
       
@@ -75,13 +79,13 @@ shinyServer(function(input, output) {
       
       ggraph(network, layout = "fr") +  
         
-        geom_edge_link(aes(width = cooc, edge_alpha = cooc), edge_colour = "orange") +  
-        geom_node_text(aes(label = name), col = "darkgreen", size = 6) +
+        geom_edge_link(aes(width = cooc, edge_alpha = cooc), edge_colour = "blue") +  
+        geom_node_text(aes(label = name), col = "darkgreen", size = 5) +
         
         theme_graph(base_family = "Arial Narrow") +  
         theme(legend.position = "none") +
         
-        labs(title = "Cooccurrences within 3 words distance", subtitle = "Select the check boxes in the left pane")
+        labs(title = "3 word distance cooccurences", subtitle = "Select check boxes in Upos")
     }
   })
 })
